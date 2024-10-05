@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Objects in Oracle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .usage {
+            margin-left: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Types of Objects in the Database and Their Usage</h1>
+    <p>In Oracle databases, objects are the basic components used to store data and perform operations. Here’s an overview of different types of objects along with their usage and examples:</p>
+
+    <h2>1. Tables</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> The primary structure to store data in rows and columns.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used to hold persistent data.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE TABLE employees (
+    employee_id NUMBER PRIMARY KEY,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50),
+    hire_date DATE,
+    salary NUMBER(8, 2)
+);
+            </pre>
+        </li>
+    </ul>
+
+    <h2>2. Views</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A virtual table that presents data from one or more tables.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for security, simplifying complex queries, or presenting data in a specific format.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE VIEW employee_salaries AS
+SELECT employee_id, first_name, last_name, salary
+FROM employees
+WHERE salary > 50000;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>3. Indexes</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A database structure that improves the speed of data retrieval operations on a table.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used to quickly locate data without having to search every row in a table.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE INDEX idx_last_name ON employees (last_name);
+            </pre>
+        </li>
+    </ul>
+
+    <h2>4. Sequences</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A database object that generates a sequence of unique numbers.
+        </li>
+        <li>
+            <strong>Usage:</strong> Often used to create primary key values.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE SEQUENCE emp_seq
+START WITH 1
+INCREMENT BY 1;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>5. Synonyms</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> An alias for another database object, like a table or a view.
+        </li>
+        <li>
+            <strong>Usage:</strong> Simplifies SQL statements and provides a level of abstraction.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE SYNONYM emp FOR employees;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>6. Procedures</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A stored PL/SQL block that performs a specific task.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for encapsulating business logic and repetitive tasks.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE OR REPLACE PROCEDURE increase_salary (
+    emp_id NUMBER,
+    increment NUMBER
+) AS
+BEGIN
+    UPDATE employees
+    SET salary = salary + increment
+    WHERE employee_id = emp_id;
+END;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>7. Functions</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> Similar to procedures, but they return a value.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for computations and returning values in SQL statements.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE OR REPLACE FUNCTION get_employee_salary (
+    emp_id NUMBER
+) RETURN NUMBER AS
+    salary_value NUMBER;
+BEGIN
+    SELECT salary INTO salary_value
+    FROM employees
+    WHERE employee_id = emp_id;
+    RETURN salary_value;
+END;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>8. Triggers</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A stored PL/SQL block that automatically executes in response to certain events on a table or view.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for auditing, enforcing business rules, or preventing invalid transactions.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE OR REPLACE TRIGGER trg_before_insert
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+    IF :new.salary < 0 THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Salary cannot be negative');
+    END IF;
+END;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>9. Packages</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A collection of related procedures, functions, variables, and other package elements grouped together.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used to encapsulate related functionality and promote reusability.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE OR REPLACE PACKAGE emp_pkg AS
+    PROCEDURE increase_salary(emp_id NUMBER, increment NUMBER);
+    FUNCTION get_employee_salary(emp_id NUMBER) RETURN NUMBER;
+END emp_pkg;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>10. Materialized Views</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> A database object that contains the results of a query and can be refreshed periodically.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for improving query performance on complex joins and aggregations.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE MATERIALIZED VIEW mv_employee_summary AS
+SELECT department_id, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department_id;
+            </pre>
+        </li>
+    </ul>
+
+    <h2>11. Types</h2>
+    <ul>
+        <li>
+            <strong>Description:</strong> User-defined data types that can encapsulate attributes and methods.
+        </li>
+        <li>
+            <strong>Usage:</strong> Used for creating structured data types, especially in object-oriented designs.
+        </li>
+        <li>
+            <strong>Example:</strong>
+            <pre>
+CREATE TYPE address_t AS OBJECT (
+    street VARCHAR2(100),
+    city VARCHAR2(50),
+    zip_code VARCHAR2(10)
+);
+            </pre>
+        </li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>These objects form the core of Oracle Database functionality, enabling efficient data management, storage, and manipulation. By leveraging these objects appropriately, you can design robust database applications that meet various business requirements.</p>
+</body>
+</html>

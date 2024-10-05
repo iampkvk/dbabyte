@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post 1</title>
+    <style>
+        body {
+            padding: 20px;
+			text-align: center;
+            font-family: Arial, sans-serif;
+            opacity: 0; /* Start invisible */
+            transition: opacity 1s ease-in-out; /* Fade-in effect */
+        }
+
+        h2 {
+            color: #333;
+            transform: translateY(-20px); /* Start slightly above */
+            opacity: 0; /* Start invisible */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Slide-in effect */
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+            transform: translateY(20px); /* Start slightly below */
+            opacity: 0; /* Start invisible */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Slide-in effect */
+        }
+
+        /* Running Words */
+        .running-words {
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden; /* Hide overflow */
+            box-sizing: border-box; /* Include padding in width */
+            animation: marquee 10s linear infinite; /* Animation */
+            font-weight: bold; /* Make text bold */
+            color: #d35400; /* Change color if needed */
+            margin-bottom: 20px; /* Space below running words */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%); /* Start off-screen right */
+            }
+            100% {
+                transform: translateX(-100%); /* End off-screen left */
+            }
+        }
+
+        /* Rotating Words */
+        .rotating-words {
+            display: inline-block; /* Allow rotation effect */
+            font-weight: bold; /* Make text bold */
+            color: #2980b9; /* Change color if needed */
+            font-size: 24px; /* Increase font size */
+            animation: rotate 5s infinite; /* Rotation effect */
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(90deg); }
+            50% { transform: rotate(180deg); }
+            75% { transform: rotate(270deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* When the body is loaded, make it visible */
+        body.loaded {
+            opacity: 1;
+        }
+
+        body.loaded h2 {
+            transform: translateY(0);
+            opacity: 1; /* Fade in */
+        }
+
+        body.loaded p {
+            transform: translateY(0);
+            opacity: 1; /* Fade in */
+        }
+    </style>
+</head>
+<body>
+    <h2>DBA workers ...................</h2>
+    <div class="running-words">
+       backup is important,   backup is important
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+    
+    </div>
+	
+    <div class="rotating-words">
+        DBA are workers
+       <p> Kaam karo "Kaam" </p>
+
+ </div>
+
+ <div class="running-words">
+       backup is important,   backup is important
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+		<p>Backup !!!! Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!Backup !!!!</p>
+    
+    </div>
+
+    <script>
+        // Add the 'loaded' class to trigger the fade-in effect
+        window.onload = function() {
+            document.body.classList.add('loaded');
+        };
+    </script>
+</body>
+</html>

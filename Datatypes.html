@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Types in Oracle Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .usage {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Data Types and Their Usage in Oracle Database</h1>
+    <p>In Oracle Database, various data types are available to store different kinds of data. Here's a comprehensive list of the data types along with their usage:</p>
+
+    <h2>1. Numeric Data Types</h2>
+    <ul>
+        <li>
+            <strong>NUMBER(p,s):</strong> Stores fixed and floating-point numbers.
+            <ul class="usage">
+                <li>p: Precision (total number of digits).</li>
+                <li>s: Scale (number of digits to the right of the decimal).</li>
+            </ul>
+        </li>
+        <li><strong>FLOAT:</strong> A subtype of NUMBER, representing floating-point numbers.</li>
+        <li><strong>INTEGER:</strong> A subtype of NUMBER that represents whole numbers (equivalent to NUMBER(38,0)).</li>
+        <li><strong>SMALLINT:</strong> A subtype of NUMBER for smaller integer values (equivalent to NUMBER(5)).</li>
+        <li><strong>DECIMAL(p,s):</strong> Similar to NUMBER, used for fixed-point numbers.</li>
+    </ul>
+
+    <h2>2. Character Data Types</h2>
+    <ul>
+        <li><strong>CHAR(n):</strong> Fixed-length character strings (up to 2000 bytes).</li>
+        <li><strong>VARCHAR2(n):</strong> Variable-length character strings (up to 4000 bytes). Recommended for most applications due to efficiency.</li>
+        <li><strong>NCHAR(n):</strong> Fixed-length national character set strings (up to 2000 bytes).</li>
+        <li><strong>NVARCHAR2(n):</strong> Variable-length national character set strings (up to 4000 bytes).</li>
+        <li><strong>CLOB:</strong> Character Large Object for storing large amounts of text (up to 4 GB).</li>
+    </ul>
+
+    <h2>3. Binary Data Types</h2>
+    <ul>
+        <li><strong>BLOB:</strong> Binary Large Object for storing large binary data (up to 4 GB).</li>
+        <li><strong>RAW(n):</strong> Stores raw binary data (up to 2000 bytes).</li>
+        <li><strong>LONG RAW:</strong> For larger raw binary data (up to 2 GB), but less commonly used due to limitations.</li>
+    </ul>
+
+    <h2>4. Date and Time Data Types</h2>
+    <ul>
+        <li><strong>DATE:</strong> Stores date and time values (includes year, month, day, hour, minute, second).</li>
+        <li><strong>TIMESTAMP:</strong> Stores date and time with fractional seconds (up to 9 digits).</li>
+        <li><strong>TIMESTAMP WITH TIME ZONE:</strong> Includes time zone information.</li>
+        <li><strong>TIMESTAMP WITH LOCAL TIME ZONE:</strong> Stores time in the session’s time zone, converted to UTC for storage.</li>
+        <li><strong>INTERVAL YEAR TO MONTH:</strong> Represents a period of time in years and months.</li>
+        <li><strong>INTERVAL DAY TO SECOND:</strong> Represents a period of time in days, hours, minutes, and seconds.</li>
+    </ul>
+
+    <h2>5. LOB Data Types</h2>
+    <ul>
+        <li><strong>CLOB:</strong> For large text data (character data).</li>
+        <li><strong>BLOB:</strong> For large binary data (images, videos).</li>
+        <li><strong>NCLOB:</strong> National Character Large Object for large amounts of text in a national character set.</li>
+    </ul>
+
+    <h2>6. Object Data Types</h2>
+    <ul>
+        <li><strong>OBJECT:</strong> Allows the creation of user-defined data types that can contain multiple attributes (similar to classes in OOP).</li>
+        <li><strong>TABLE:</strong> Allows for creating nested tables as a type.</li>
+    </ul>
+
+    <h2>7. JSON Data Type</h2>
+    <ul>
+        <li><strong>JSON:</strong> Oracle Database supports storing JSON data, often using VARCHAR2 or CLOB, but it also has specific features for querying JSON data.</li>
+    </ul>
+
+    <h2>8. Spatial Data Types</h2>
+    <ul>
+        <li><strong>SDO_GEOMETRY:</strong> Used for storing spatial data (geographic objects) in Oracle Spatial.</li>
+    </ul>
+
+    <h2>9. XML Data Types</h2>
+    <ul>
+        <li><strong>XMLTYPE:</strong> Used for storing XML data and provides methods for querying and manipulating XML.</li>
+    </ul>
+
+    <h2>10. Miscellaneous Data Types</h2>
+    <ul>
+        <li><strong>ROWID:</strong> A unique identifier for each row in a table.</li>
+        <li><strong>UROWID:</strong> A variable-length row identifier for tables or indexes.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Choosing the right data type is crucial for optimizing performance, storage, and data integrity in Oracle databases. Each data type has its specific use cases, so it's essential to understand their characteristics and applications when designing your database schema.</p>
+</body>
+</html>

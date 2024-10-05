@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedures and Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Procedures vs Functions</h1>
+    <p>In programming, both procedures and functions are used to organize and reuse code, but they serve slightly different purposes and are used in different contexts. Here's a breakdown of the two concepts, along with examples.</p>
+
+    <h2>Procedure</h2>
+    <p>A procedure (often called a "subroutine" or "method" in some languages) is a block of code that performs a task but does not return a value. It is typically used to execute a sequence of statements.</p>
+    <h3>Example of a Procedure:</h3>
+    <pre>
+def print_greeting(name):
+    print(f"Hello, {name}!")
+
+# Using the procedure
+print_greeting("Alice")
+    </pre>
+    <p>In this example, <code>print_greeting</code> is a procedure that takes a name as an argument and prints a greeting. It doesn't return any value; it simply performs an action.</p>
+
+    <h2>Function</h2>
+    <p>A function, on the other hand, is a block of code that performs a task and returns a value. Functions are used when you want to compute a value that can be used elsewhere in your program.</p>
+    <h3>Example of a Function:</h3>
+    <pre>
+def add_numbers(a, b):
+    return a + b
+
+# Using the function
+result = add_numbers(5, 3)
+print(result)  # Output: 8
+    </pre>
+    <p>In this case, <code>add_numbers</code> is a function that takes two parameters, <code>a</code> and <code>b</code>, and returns their sum. The return value can be stored in a variable (like <code>result</code>) or used directly in expressions.</p>
+
+    <h2>Key Differences</h2>
+    <ul>
+        <li><strong>Return Value:</strong>
+            <ul>
+                <li><strong>Procedure:</strong> Does not return a value (void).</li>
+                <li><strong>Function:</strong> Returns a value.</li>
+            </ul>
+        </li>
+        <li><strong>Usage:</strong>
+            <ul>
+                <li><strong>Procedure:</strong> Typically used for tasks like printing, updating variables, or performing operations that don't require a result.</li>
+                <li><strong>Function:</strong> Used for calculations or operations where a result is needed.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Summary</h2>
+    <ul>
+        <li><strong>Procedure:</strong> A block of code for tasks (e.g., printing a message) without returning a value.</li>
+        <li><strong>Function:</strong> A block of code that performs a calculation and returns a value (e.g., adding two numbers).</li>
+    </ul>
+    <p>Understanding the distinction between procedures and functions can help you choose the right approach when designing your code!</p>
+</body>
+</html>

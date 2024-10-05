@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBABYTES - DBA Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* To allow footer at the bottom */
+            height: 100vh; /* Full height for body */
+        }
+        header {
+            background: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-grow: 1; /* Allow the container to grow */
+        }
+        .sidebar {
+            width: 15%;
+            background: #f4f4f4;
+            padding: 15px;
+            border: 1px solid black; 
+        }
+        main {
+            width: 70%; /* Adjusted width */
+            padding: 10px; /* Reduced padding */
+            flex-grow: 1;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 150px); /* Adjust height for header and footer */
+            border: 1px solid black;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #ddd;
+            border: 1px solid black; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><b>DBABYTES</b></h1>
+        <p>Here some of the contents are easy and understandable</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar left">
+            <h1>Topic List</h1>
+            <ul>
+                <li><a href="home_post.html" target="content-frame">Home</a></li>
+                <li><a href="Datatypes.html" target="content-frame">Datatypes</a></li>
+                <li><a href="Objects.html" target="content-frame">Objects</a></li>
+                <li><a href="CharacterSets.html" target="content-frame">Character Sets</a></li>
+                <li><a href="FunctionAndProcedure.html" target="content-frame">Function And Procedure</a></li>
+            </ul>
+        </aside>
+
+        <main>
+             <iframe name="content-frame" id="content-frame"></iframe>
+        </main>
+
+        <aside class="sidebar right">
+            <h2>Some Extras</h2>
+            <ul>
+                <li><a href="FunctionAndProcedure.html" target="content-frame">Post 4</a></li>
+                <li><a href="doc1.htm" target="content-frame">Post 5</a></li>
+                <li><a href="post6.html" target="content-frame">Post 6</a></li>
+            </ul>
+        </aside>
+    </div>
+    
+    <footer>
+        <p>Contact: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+    </footer>
+
+    <script>
+        // Set default page for iframe on load
+        window.onload = function() {
+            document.getElementById('content-frame').src = 'home_post.html';
+        };
+    </script>
+</body>
+</html>
