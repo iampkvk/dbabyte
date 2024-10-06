@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redo vs Undo in Oracle Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .usage {
+            margin-left: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Redo vs Undo in Oracle Database</h1>
+
+<p>In Oracle databases, redo and undo are two essential concepts that manage data consistency and recovery during transactions. Here's a breakdown of each, along with their differences and examples:</p>
+
+<h2>Redo</h2>
+<ul>
+    <li><strong>Definition:</strong> Redo refers to the process of reapplying changes made by committed transactions to ensure that the database can recover to its most recent state after a failure. Redo logs record all changes made to the database.</li>
+    <li><strong>Purpose:</strong> To recover committed transactions after a crash or failure, ensuring that all changes are applied to the database.</li>
+    <li><strong>Mechanism:</strong> Redo information is stored in the redo log files. When a transaction is committed, its changes are written to these logs, and the changes can be reapplied during recovery.</li>
+    <li><strong>Example:</strong> If a transaction updates a salary in an employee record and commits, the change is recorded in the redo log. In case of a database crash after this commit, Oracle can read the redo log and apply that change to ensure the database reflects the latest information.</li>
+</ul>
+
+<h2>Undo</h2>
+<ul>
+    <li><strong>Definition:</strong> Undo refers to the process of rolling back or reverting changes made by uncommitted transactions. Undo data allows the database to maintain consistency by ensuring that changes made by incomplete transactions do not affect the overall data state.</li>
+    <li><strong>Purpose:</strong> To allow for the rollback of transactions and maintain the integrity of the database by reversing uncommitted changes.</li>
+    <li><strong>Mechanism:</strong> Undo information is stored in undo tablespaces. When a transaction modifies data, Oracle keeps track of the original data so it can be restored if the transaction is rolled back.</li>
+    <li><strong>Example:</strong> If a transaction updates a salary in an employee record but is rolled back (for example, due to an error), Oracle uses the undo information to revert the employee's salary back to its original state.</li>
+</ul>
+
+<h2>Key Differences</h2>
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Redo</th>
+        <th>Undo</th>
+    </tr>
+    <tr>
+        <td>Purpose</td>
+        <td>Reapply changes for committed transactions</td>
+        <td>Roll back changes for uncommitted transactions</td>
+    </tr>
+    <tr>
+        <td>Storage</td>
+        <td>Stored in redo log files</td>
+        <td>Stored in undo tablespaces</td>
+    </tr>
+    <tr>
+        <td>Use Case</td>
+        <td>Recovery after a crash</td>
+        <td>Transaction rollback</td>
+    </tr>
+    <tr>
+        <td>Data Impact</td>
+        <td>Affects only committed data</td>
+        <td>Affects only uncommitted data</td>
+    </tr>
+</table>
+
+<h3>Summary</h3>
+<ul>
+    <li><strong>Redo</strong> is crucial for ensuring that committed transactions can be reapplied after a failure, maintaining the integrity of the database state.</li>
+    <li><strong>Undo</strong> is essential for allowing transactions to be rolled back, ensuring that uncommitted changes do not affect the overall consistency of the database.</li>
+</ul>
+
+<p>Understanding these concepts is vital for managing data integrity and ensuring reliable transaction processing in Oracle databases.</p>
+
+</body>
+</html>

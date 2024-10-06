@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACID Properties in Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        .usage {
+            margin-left: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>ACID Properties in Database with Example</h1>
+
+<p>In the context of databases, ACID is an acronym that describes a set of properties that guarantee reliable processing of database transactions. The properties are:</p>
+<ol>
+    <li>Atomicity</li>
+    <li>Consistency</li>
+    <li>Isolation</li>
+    <li>Durability</li>
+</ol>
+
+<h2>1. Atomicity</h2>
+<ul>
+    <li><strong>Definition:</strong> A transaction is treated as a single unit that either fully completes or does not happen at all. If any part of the transaction fails, the entire transaction fails and the database state is left unchanged.</li>
+    <li><strong>Example:</strong> Suppose a bank transaction involves transferring money from Account A to Account B. The transaction consists of two operations: subtracting the amount from Account A and adding it to Account B. If the subtraction is successful but the addition fails (e.g., due to a system crash), the transaction will not be completed. The system will ensure that Account A remains unchanged and no money is lost.</li>
+</ul>
+
+<h2>2. Consistency</h2>
+<ul>
+    <li><strong>Definition:</strong> Transactions must take the database from one valid state to another valid state, maintaining all predefined rules, such as integrity constraints.</li>
+    <li><strong>Example:</strong> If a database has a rule that the balance of any account cannot go below zero, a transaction that tries to withdraw more money than is available must be rejected. If a transaction transfers $100 from Account A with a balance of $200 to Account B with a balance of $50, the transaction should only succeed if the resulting balances are still valid (e.g., Account A should have at least $100 after the transaction).</li>
+</ul>
+
+<h2>3. Isolation</h2>
+<ul>
+    <li><strong>Definition:</strong> Transactions must be executed in isolation from one another. Intermediate results of a transaction should not be visible to other transactions until the transaction is complete.</li>
+    <li><strong>Example:</strong> If two transactions are executing simultaneously—Transaction 1 is transferring money from Account A to Account B, while Transaction 2 is transferring money from Account B to Account C—Transaction 2 should not see the intermediate state of Account B until Transaction 1 is fully completed. This prevents issues such as double spending.</li>
+</ul>
+
+<h2>4. Durability</h2>
+<ul>
+    <li><strong>Definition:</strong> Once a transaction has been committed, it will remain so, even in the event of a system failure. The changes made by the transaction are permanent.</li>
+    <li><strong>Example:</strong> After successfully transferring money between accounts and committing the transaction, if a power outage occurs, the database should still reflect that the transfer took place when the system comes back online. The committed changes are saved to persistent storage.</li>
+</ul>
+
+<h3>Summary</h3>
+<p>The ACID properties—Atomicity, Consistency, Isolation, and Durability—are crucial for ensuring reliable and predictable transaction processing in databases. These properties help maintain data integrity and provide a stable environment for concurrent transactions.</p>
+
+</body>
+</html>

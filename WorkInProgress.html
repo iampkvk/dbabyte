@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work In Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        h1 {
+            color: #4CAF50;
+            animation: fadeIn 2s;
+        }
+        .progress-container {
+            width: 80%;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            height: 30px;
+            width: 0;
+            background-color: #4CAF50;
+            border-radius: 25px;
+            animation: progress 5s infinite;
+        }
+        @keyframes progress {
+            0% { width: 0; }
+            50% { width: 100%; }
+            100% { width: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .status {
+            font-size: 18px;
+            margin-top: 10px;
+            animation: slideIn 3s infinite alternate;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(-20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Work In Progress</h1>
+
+<div class="progress-container">
+    <div class="progress-bar"></div>
+</div>
+
+<div class="status">Loading... Please wait.</div>
+
+<script>
+    // Optional: You can add additional JavaScript for more dynamic content
+    let statusText = document.querySelector('.status');
+    let messages = ["Loading... Please wait.", "Still working...", "Almost there...", "Thank you for your patience!"];
+    let index = 0;
+
+    setInterval(() => {
+        index = (index + 1) % messages.length;
+        statusText.innerText = messages[index];
+    }, 2000);
+</script>
+
+</body>
+</html>

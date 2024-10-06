@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Used SQL Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Most Used SQL Functions</h1>
+
+<p>In SQL, various functions are frequently used for data manipulation and analysis. Here are some of the most commonly used SQL functions, along with brief explanations and examples:</p>
+
+<h2>1. Aggregate Functions</h2>
+<ul>
+    <li><strong>COUNT()</strong>: Returns the number of rows that match a specified criterion.
+        <pre>SELECT COUNT(*) FROM employees WHERE department_id = 10;</pre>
+    </li>
+    <li><strong>SUM()</strong>: Returns the total sum of a numeric column.
+        <pre>SELECT SUM(salary) FROM employees WHERE department_id = 10;</pre>
+    </li>
+    <li><strong>AVG()</strong>: Returns the average value of a numeric column.
+        <pre>SELECT AVG(salary) FROM employees;</pre>
+    </li>
+    <li><strong>MIN()</strong>: Returns the smallest value in a set.
+        <pre>SELECT MIN(salary) FROM employees;</pre>
+    </li>
+    <li><strong>MAX()</strong>: Returns the largest value in a set.
+        <pre>SELECT MAX(salary) FROM employees;</pre>
+    </li>
+</ul>
+
+<h2>2. String Functions</h2>
+<ul>
+    <li><strong>CONCAT()</strong>: Combines two or more strings into one.
+        <pre>SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;</pre>
+    </li>
+    <li><strong>UPPER()</strong>: Converts a string to uppercase.
+        <pre>SELECT UPPER(first_name) FROM employees;</pre>
+    </li>
+    <li><strong>LOWER()</strong>: Converts a string to lowercase.
+        <pre>SELECT LOWER(last_name) FROM employees;</pre>
+    </li>
+    <li><strong>SUBSTRING()</strong>: Extracts a substring from a string.
+        <pre>SELECT SUBSTRING(first_name, 1, 3) FROM employees; -- First 3 characters</pre>
+    </li>
+    <li><strong>LENGTH()</strong>: Returns the length of a string.
+        <pre>SELECT LENGTH(first_name) FROM employees;</pre>
+    </li>
+</ul>
+
+<h2>3. Date Functions</h2>
+<ul>
+    <li><strong>NOW()</strong> or <strong>CURRENT_DATE</strong>: Returns the current date and time.
+        <pre>SELECT NOW();  -- MySQL</pre>
+        <pre>SELECT CURRENT_DATE;  -- Standard SQL</pre>
+    </li>
+    <li><strong>DATEADD()</strong>: Adds a specified time interval to a date.
+        <pre>SELECT DATEADD(DAY, 7, hire_date) FROM employees;  -- SQL Server</pre>
+    </li>
+    <li><strong>DATEDIFF()</strong>: Returns the difference between two dates.
+        <pre>SELECT DATEDIFF(NOW(), hire_date) FROM employees;  -- MySQL</pre>
+    </li>
+    <li><strong>EXTRACT()</strong>: Retrieves sub-parts of a date (year, month, day).
+        <pre>SELECT EXTRACT(YEAR FROM hire_date) AS hire_year FROM employees;</pre>
+    </li>
+</ul>
+
+<h2>4. Mathematical Functions</h2>
+<ul>
+    <li><strong>ROUND()</strong>: Rounds a number to a specified number of decimal places.
+        <pre>SELECT ROUND(salary, 2) FROM employees;</pre>
+    </li>
+    <li><strong>FLOOR()</strong>: Returns the largest integer value less than or equal to a number.
+        <pre>SELECT FLOOR(salary) FROM employees;</pre>
+    </li>
+    <li><strong>CEILING()</strong>: Returns the smallest integer value greater than or equal to a number.
+        <pre>SELECT CEILING(salary) FROM employees;</pre>
+    </li>
+</ul>
+
+<h2>5. Conditional Functions</h2>
+<ul>
+    <li><strong>CASE</strong>: Allows for conditional logic in queries.
+        <pre>SELECT first_name, 
+               CASE 
+                 WHEN salary > 50000 THEN 'High'
+                 WHEN salary BETWEEN 30000 AND 50000 THEN 'Medium'
+                 ELSE 'Low'
+               END AS salary_category
+        FROM employees;</pre>
+    </li>
+</ul>
+
+<h3>Summary</h3>
+<p>These functions are integral to performing various operations in SQL, from aggregating data and manipulating strings to working with dates and applying conditional logic. Familiarity with these functions will greatly enhance your ability to write effective SQL queries and manage data efficiently.</p>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent Data Encryption (TDE)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Transparent Data Encryption (TDE)</h1>
+<p>Transparent Data Encryption (TDE) is a feature in Oracle databases that provides encryption of data at rest, helping protect sensitive data stored in the database. TDE encrypts the data in the datafiles, making it unreadable without the appropriate decryption keys.</p>
+
+<h2>Benefits of TDE</h2>
+<ul>
+    <li><strong>Data Protection:</strong> Secures sensitive information from unauthorized access.</li>
+    <li><strong>Compliance:</strong> Helps meet regulatory requirements for data protection (e.g., GDPR, PCI DSS).</li>
+    <li><strong>Transparency:</strong> Minimal impact on application performance and no changes are required in application code.</li>
+</ul>
+
+<h2>Steps to Enable TDE</h2>
+<h3>Prerequisites</h3>
+<ul>
+    <li>Oracle Database 12c or later.</li>
+    <li>Administrative privileges to create and manage keys.</li>
+</ul>
+
+<h3>1. Create a Wallet</h3>
+<p>The wallet stores the master encryption keys.</p>
+<pre><code>-- Set the directory where the wallet will be stored
+ALTER SYSTEM SET ENCRYPTION WALLET LOCATION = '/path/to/wallet';
+
+-- Create the wallet
+ADMINISTER KEY MANAGEMENT CREATE KEYSTORE '/path/to/wallet' IDENTIFIED BY "your_wallet_password";</code></pre>
+
+<h3>2. Open the Wallet</h3>
+<p>You need to open the wallet to use the encryption keys.</p>
+<pre><code>-- Open the wallet
+ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY "your_wallet_password";</code></pre>
+
+<h3>3. Create a Master Encryption Key</h3>
+<p>Generate a master encryption key that will be used for encrypting the tablespaces.</p>
+<pre><code>-- Create the master encryption key
+ADMINISTER KEY MANAGEMENT SET ENCRYPTION KEY IDENTIFIED BY "your_wallet_password" WITH BACKUP;</code></pre>
+
+<h3>4. Encrypt a Tablespace</h3>
+<p>To encrypt data, you typically encrypt a tablespace where sensitive data resides.</p>
+<pre><code>-- Create a new encrypted tablespace
+CREATE TABLESPACE encrypted_ts DATAFILE '/path/to/encrypted_ts.dbf' SIZE 100M ENCRYPTION USING 'AES256' DEFAULT STORAGE(ENCRYPTION ENCRYPTED);
+
+-- Or encrypt an existing tablespace
+ALTER TABLESPACE existing_ts ENCRYPTION ONLINE USING 'AES256';</code></pre>
+
+<h3>5. Encrypting Existing Data</h3>
+<p>For existing tables, you need to re-encrypt the data.</p>
+<pre><code>-- Encrypt existing columns in a table
+ALTER TABLE your_table MODIFY your_column ENCRYPTION USING 'AES256';</code></pre>
+
+<h3>6. Verify Encryption</h3>
+<p>To check if your tablespace or data is encrypted, use the following SQL queries.</p>
+<pre><code>-- Check if the tablespace is encrypted
+SELECT tablespace_name, encrypted FROM dba_tablespaces WHERE tablespace_name = 'ENCRYPTED_TS';
+
+-- Check encrypted columns in a table
+SELECT table_name, column_name, encrypted FROM dba_encrypted_columns WHERE table_name = 'YOUR_TABLE';</code></pre>
+
+<h3>7. Backup the Wallet</h3>
+<p>Backup the wallet directory to ensure you can recover the encryption keys in case of failure.</p>
+
+<h3>8. Secure the Wallet</h3>
+<p>Ensure that the wallet has appropriate file permissions and is stored securely.</p>
+
+<h3>9. Enable Automatic Wallet Opening (Optional)</h3>
+<p>To avoid manually opening the wallet each time the database starts, you can set it to open automatically.</p>
+<pre><code>-- Edit the sqlnet.ora file to include the following:
+ENCRYPTION WALLET LOCATION = /path/to/wallet
+ENCRYPTION KEYSTORE OPEN = TRUE</code></pre>
+
+<h2>Summary of Steps to Enable TDE</h2>
+<ul>
+    <li>Create a Wallet: Store encryption keys securely.</li>
+    <li>Open the Wallet: Make the keys accessible.</li>
+    <li>Create a Master Key: Generate the key used for encryption.</li>
+    <li>Encrypt Tablespaces: Either create new encrypted tablespaces or encrypt existing ones.</li>
+    <li>Encrypt Existing Data: Modify columns to ensure data is encrypted.</li>
+    <li>Verify Encryption: Use queries to confirm encryption status.</li>
+    <li>Backup the Wallet: Ensure recovery of keys.</li>
+    <li>Secure the Wallet: Maintain proper permissions and security measures.</li>
+    <li>Enable Automatic Wallet Opening: (Optional) Configure for ease of use.</li>
+</ul>
+
+<p>By following these steps, you can effectively enable Transparent Data Encryption in your Oracle database, ensuring that sensitive data remains protected.</p>
+
+</body>
+</html>

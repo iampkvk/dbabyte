@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Patch Utility in Oracle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Data Patch Utility in Oracle</h1>
+
+<p>datapatch is a utility provided by Oracle that automates the application of SQL patches that are included in Oracle Database patch sets. It is specifically designed to apply any required changes to the database schema that are necessary when you apply a new patch or upgrade the database version.</p>
+
+<h2>Key Functions of datapatch</h2>
+
+<ul>
+    <li><strong>Applying SQL Patches:</strong>
+        <ul>
+            <li><strong>Description:</strong> datapatch automatically applies any SQL patch files (also known as "datapatch SQL scripts") that are included in the Oracle patch set you have just installed. This ensures that your database schema is updated according to the new version requirements.</li>
+        </ul>
+    </li>
+    <li><strong>Running catbundle.sql:</strong>
+        <ul>
+            <li><strong>Description:</strong> When you apply a bundle patch or a release update, datapatch executes the catbundle.sql script if it’s necessary. This script is responsible for managing the patching of the database.</li>
+        </ul>
+    </li>
+    <li><strong>Handling Dependency Checks:</strong>
+        <ul>
+            <li><strong>Description:</strong> datapatch checks for any dependencies required by the patches being applied, ensuring that all necessary conditions are met before applying changes. This helps prevent errors and maintains the integrity of the database.</li>
+        </ul>
+    </li>
+    <li><strong>Logging:</strong>
+        <ul>
+            <li><strong>Description:</strong> It logs the results of the patching process, including any issues encountered during execution. This log can be useful for troubleshooting if something goes wrong during the patching process.</li>
+        </ul>
+    </li>
+    <li><strong>Rolling Back:</strong>
+        <ul>
+            <li><strong>Description:</strong> While datapatch primarily focuses on applying patches, it also keeps track of which patches have been applied, which allows for easier rollback procedures if necessary.</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Usage Example</h2>
+
+<p>After applying a patch to your Oracle Database, you typically run datapatch like this:</p>
+<pre>$ $ORACLE_HOME/bin/datapatch</pre>
+
+<h2>Important Notes</h2>
+<ul>
+    <li><strong>Prerequisite:</strong> Ensure that the Oracle Database instance is running before executing datapatch. It needs to connect to the database to apply the necessary changes.</li>
+    <li><strong>Script Location:</strong> datapatch is located in the Oracle Home bin directory, and it's typically run from the command line.</li>
+    <li><strong>Oracle Versions:</strong> Starting from Oracle Database 12c, datapatch has been a crucial component of the patching process.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>datapatch simplifies and automates the application of necessary SQL changes that accompany Oracle Database patches. By ensuring that the database schema is kept up to date with the latest requirements, it plays a critical role in maintaining database integrity and performance after patching.</p>
+
+</body>
+</html>

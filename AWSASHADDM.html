@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWR vs ASH vs ADDM in Oracle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1>AWR vs ASH vs ADDM in Oracle</h1>
+
+<p>In Oracle Database, AWR (Automatic Workload Repository), ASH (Active Session History), and ADDM (Automatic Database Diagnostic Monitor) are critical components for performance monitoring and tuning. Here’s a breakdown of each, including their purposes, data collected, and differences:</p>
+
+<h2>1. AWR (Automatic Workload Repository)</h2>
+<ul>
+    <li><strong>Purpose:</strong> AWR is designed to collect, maintain, and provide access to performance statistics for Oracle databases. It serves as a historical repository of workload data.</li>
+    <li><strong>Data Collected:</strong>
+        <ul>
+            <li>CPU usage</li>
+            <li>I/O statistics</li>
+            <li>Wait events</li>
+            <li>SQL execution statistics</li>
+            <li>Instance activity</li>
+        </ul>
+    </li>
+    <li><strong>Usage:</strong> AWR reports can be generated to analyze performance trends over time, helping DBAs identify bottlenecks and overall database health.</li>
+    <li><strong>Retention:</strong> AWR snapshots are typically retained for a default period (e.g., 7 days) but can be configured as needed.</li>
+    <li><strong>Command to Generate Report:</strong>
+        <pre>@$ORACLE_HOME/rdbms/admin/awrrpt.sql</pre>
+    </li>
+</ul>
+
+<h2>2. ASH (Active Session History)</h2>
+<ul>
+    <li><strong>Purpose:</strong> ASH captures detailed session activity in real-time, focused on active sessions and providing a snapshot of what sessions are doing at a specific point in time.</li>
+    <li><strong>Data Collected:</strong>
+        <ul>
+            <li>Active sessions and their wait events</li>
+            <li>SQL statements being executed</li>
+            <li>Session state (e.g., running, waiting)</li>
+            <li>Time spent in various states (e.g., CPU, I/O)</li>
+        </ul>
+    </li>
+    <li><strong>Usage:</strong> ASH is useful for diagnosing current performance issues, particularly during high-load situations.</li>
+    <li><strong>Retention:</strong> ASH data is retained for a shorter duration (typically 1-2 hours), reflecting current activity.</li>
+    <li><strong>Command to Generate Report:</strong>
+        <pre>SELECT * FROM v$active_session_history;</pre>
+    </li>
+</ul>
+
+<h2>3. ADDM (Automatic Database Diagnostic Monitor)</h2>
+<ul>
+    <li><strong>Purpose:</strong> ADDM analyzes AWR data to provide recommendations for performance improvements and automatically identifies performance issues.</li>
+    <li><strong>Data Collected:</strong> ADDM does not collect data itself but analyzes data from AWR to generate:
+        <ul>
+            <li>Performance recommendations</li>
+            <li>Root cause analysis for performance issues</li>
+            <li>Suggested actions to improve performance</li>
+        </ul>
+    </li>
+    <li><strong>Usage:</strong> ADDM runs automatically during each AWR snapshot interval.</li>
+    <li><strong>Command to Generate Report:</strong>
+        <pre>@$ORACLE_HOME/rdbms/admin/addmrpt.sql</pre>
+    </li>
+</ul>
+
+<h2>Key Differences</h2>
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>AWR</th>
+        <th>ASH</th>
+        <th>ADDM</th>
+    </tr>
+    <tr>
+        <td>Purpose</td>
+        <td>Historical performance data</td>
+        <td>Real-time session activity</td>
+        <td>Automated performance analysis and recommendations</td>
+    </tr>
+    <tr>
+        <td>Data Retention</td>
+        <td>Longer (e.g., 7 days)</td>
+        <td>Shorter (e.g., 1-2 hours)</td>
+        <td>N/A (analyzes AWR data)</td>
+    </tr>
+    <tr>
+        <td>Data Collected</td>
+        <td>Broad metrics on database performance</td>
+        <td>Active session details</td>
+        <td>Analysis and recommendations based on AWR data</td>
+    </tr>
+    <tr>
+        <td>Usage</td>
+        <td>Performance trends and historical analysis</td>
+        <td>Real-time performance troubleshooting</td>
+        <td>Proactive performance tuning</td>
+    </tr>
+</table>
+
+<h2>Summary</h2>
+<ul>
+    <li>AWR provides a comprehensive historical overview of database performance.</li>
+    <li>ASH offers real-time insights into active sessions and their behavior.</li>
+    <li>ADDM leverages AWR data to generate actionable recommendations for improving database performance.</li>
+</ul>
+
+<p>Together, these tools form a powerful suite for monitoring, diagnosing, and tuning Oracle Database performance.</p>
+
+</body>
+</html>

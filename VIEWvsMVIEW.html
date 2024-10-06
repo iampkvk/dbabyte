@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Views vs Materialized Views</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        ul {
+            margin: 10px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Views vs Materialized Views</h1>
+<p>In Oracle databases, both views and materialized views are used to simplify complex queries and provide a way to represent data, but they serve different purposes and have distinct characteristics. Here's a detailed comparison:</p>
+
+<h2>Views</h2>
+<h3>Definition</h3>
+<p>A view is a virtual table that is based on the result of a SELECT query. It does not store the data physically; instead, it retrieves data from the underlying tables each time it is queried.</p>
+
+<h3>Characteristics</h3>
+<ul>
+    <li><strong>Data Retrieval:</strong> A view does not contain data; it retrieves data from the base tables when queried.</li>
+    <li><strong>Up-to-date:</strong> Always reflects the current data in the underlying tables because it fetches data dynamically.</li>
+    <li><strong>Performance:</strong> Generally faster for simple queries, but can be slow for complex queries with many joins or aggregations, as it executes the underlying query each time.</li>
+    <li><strong>Storage:</strong> No additional storage required since it doesn’t store data.</li>
+    <li><strong>Read-Only or Updatable:</strong> Depending on the SQL used in the view definition, a view can be read-only or updatable (if it meets certain criteria).</li>
+    <li><strong>Use Cases:</strong> Useful for simplifying complex queries, restricting data access, or presenting data in a specific format.</li>
+</ul>
+
+<h3>Example</h3>
+<pre><code>CREATE VIEW employee_view AS
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE department_id = 10;</code></pre>
+
+<h2>Materialized Views</h2>
+<h3>Definition</h3>
+<p>A materialized view is a database object that stores the result of a query physically. It can be refreshed periodically or on demand, providing a snapshot of the data at the time of the last refresh.</p>
+
+<h3>Characteristics</h3>
+<ul>
+    <li><strong>Data Storage:</strong> Physically stores data based on the query results, which can improve performance for complex queries.</li>
+    <li><strong>Performance:</strong> Faster for read operations since it retrieves precomputed data rather than querying the base tables each time.</li>
+    <li><strong>Refresh Options:</strong> Can be refreshed automatically (incrementally or completely) or manually, depending on how it's configured.</li>
+    <li><strong>Storage Requirement:</strong> Requires additional storage since it stores a copy of the data.</li>
+    <li><strong>Use Cases:</strong> Useful for reporting, data warehousing, and situations where query performance needs to be improved for complex aggregations or joins.</li>
+</ul>
+
+<h3>Example</h3>
+<pre><code>CREATE MATERIALIZED VIEW employee_mview AS
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE department_id = 10;</code></pre>
+
+<h3>Refreshing a Materialized View</h3>
+<pre><code>-- To refresh the materialized view manually
+EXECUTE DBMS_MVIEW.REFRESH('employee_mview');
+
+-- To create a materialized view with automatic refresh every hour
+CREATE MATERIALIZED VIEW employee_mview
+REFRESH EVERY INTERVAL '1' HOUR AS
+SELECT employee_id, first_name, last_name
+FROM employees
+WHERE department_id = 10;</code></pre>
+
+<h2>Key Differences</h2>
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>View</th>
+            <th>Materialized View</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data Storage</td>
+            <td>No physical storage</td>
+            <td>Physically stores data</td>
+        </tr>
+        <tr>
+            <td>Data Freshness</td>
+            <td>Always up-to-date</td>
+            <td>May become stale; needs refresh</td>
+        </tr>
+        <tr>
+            <td>Performance</td>
+            <td>Can be slower for complex queries</td>
+            <td>Faster for complex queries due to precomputed data</td>
+        </tr>
+        <tr>
+            <td>Refresh Mechanism</td>
+            <td>Dynamic (no manual refresh)</td>
+            <td>Requires manual or scheduled refresh</td>
+        </tr>
+        <tr>
+            <td>Use Cases</td>
+            <td>Simplifying queries, security</td>
+            <td>Reporting, data warehousing</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Conclusion</h2>
+<ul>
+    <li>Use Views when you need real-time data access without storage overhead, and when you want to simplify complex queries or enforce security.</li>
+    <li>Use Materialized Views when you need to improve query performance for complex aggregations or reporting, and you can tolerate some latency in data freshness.</li>
+</ul>
+
+<p>Choosing between views and materialized views depends on your specific use case, data access patterns, and performance requirements.</p>
+
+</body>
+</html>
